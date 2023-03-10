@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,11 +12,65 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.grey,
-      ),
-      home: login(),
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.grey,
+        ),
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('Checkbox and Switch Example'),
+          ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              MyCheckboxWidget(),
+              MySwitchWidget(),
+            ],
+          ),
+        ));
+  }
+}
+
+class MyCheckboxWidget extends StatefulWidget {
+  @override
+  _MyCheckboxWidgetState createState() => _MyCheckboxWidgetState();
+}
+
+class _MyCheckboxWidgetState extends State<MyCheckboxWidget> {
+  bool _isChecked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return CheckboxListTile(
+      title: Text('My Checkbox'),
+      value: _isChecked,
+      onChanged: (value) {
+        setState(() {
+          _isChecked = value!;
+        });
+      },
+    );
+  }
+}
+
+class MySwitchWidget extends StatefulWidget {
+  @override
+  _MySwitchWidgetState createState() => _MySwitchWidgetState();
+}
+
+class _MySwitchWidgetState extends State<MySwitchWidget> {
+  bool _isOn = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return SwitchListTile(
+      title: Text('My Switch'),
+      value: _isOn,
+      onChanged: (value) {
+        setState(() {
+          _isOn = value;
+        });
+      },
     );
   }
 }
@@ -72,9 +125,7 @@ class login extends StatelessWidget {
               ),
               ElevatedButton(
                   onPressed: () {},
-                  child: Text("Log In", style: TextStyle(
-                    color: Colors.white)
-                ),
+                  child: Text("Log In", style: TextStyle(color: Colors.white)),
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
                       Color.fromARGB(0, 63, 111, 150),
